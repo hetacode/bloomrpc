@@ -221,7 +221,7 @@
     "react-test-renderer": "^16.8.4",
     "source-map-support": "^0.5.10",
     "terser-webpack-plugin": "^1.2.3",
-    "uuid": "^7.0.2"
+    "uuid": "^7.0.3"
   },
   "devEngines": {
     "node": ">=8.12.x",
