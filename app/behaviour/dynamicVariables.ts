@@ -1,17 +1,18 @@
 import { v4 as uuidv4 } from "uuid"
 
 const variableAction: { [variable: string]: (p: string) => [string, boolean] } = {
-  "{{:guid": generateGuid,
+  "guid": generateGuid,
   // date now
-  "{{:date": generateDate,
+  "date": generateDate,
   // rnd 10
   // rnd 5 10
-  "{{:rnd": generateRandom,
+  "rnd": generateRandom,
 }
 
 export const dynamicVariablesParser = (data: string) => {
   let result = data
   for (let [key, value] of Object.entries(variableAction)) {
+    key = "{{:" + key
     let variableOccurencesCount = result.match(new RegExp(key, "g"))?.length ?? 0
     for (let i = 0; i < variableOccurencesCount; i++) {
       let keyLength = key.length
@@ -31,7 +32,6 @@ export const dynamicVariablesParser = (data: string) => {
     }
   }
 
-  console.log(result)
   return result
 }
 
