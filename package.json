@@ -180,12 +180,12 @@
     "jest": "^24.3.0",
     "mini-css-extract-plugin": "^0.5.0",
     "minimist": "^1.2.3",
-    "node-sass": "^4.13.1",
     "npm-logical-tree": "^1.2.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "prettier": "^1.16.4",
     "react-hot-loader": "^4.8.0",
     "rimraf": "^2.6.3",
+    "sass": "^1.47.0",
     "sass-loader": "^7.1.0",
     "sinon": "^7.2.7",
     "source-list-map": "^2.0.1",
@@ -221,7 +221,7 @@
     "react-test-renderer": "^16.8.4",
     "source-map-support": "^0.5.10",
     "terser-webpack-plugin": "^1.2.3",
-    "uuid": "^7.0.2"
+    "uuid": "^7.0.3"
   },
   "devEngines": {
     "node": ">=8.12.x",

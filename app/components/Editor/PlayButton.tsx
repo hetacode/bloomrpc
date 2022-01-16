@@ -11,7 +11,7 @@ import {
   addResponseStreamData, setStreamCommitted
 } from './actions';
 import { ControlsStateProps } from './Controls';
-import { GRPCEventType, GRPCRequest, ResponseMetaInformation, GRPCEventEmitter, GRPCWebRequest } from '../../behaviour';
+import { GRPCEventType, GRPCRequest, ResponseMetaInformation, GRPCEventEmitter, GRPCWebRequest, dynamicVariablesParser } from '../../behaviour';
 
 export const makeRequest = ({ dispatch, state, protoInfo }: ControlsStateProps) => {
   // Do nothing if not set
@@ -28,12 +28,15 @@ export const makeRequest = ({ dispatch, state, protoInfo }: ControlsStateProps) 
   // Play button action:
   dispatch(setIsLoading(true));
 
+  let data = dynamicVariablesParser(state.data)
+  let metadata = dynamicVariablesParser(state.metadata) 
+
   let grpcRequest : GRPCEventEmitter
   if (state.grpcWeb){
     grpcRequest = new GRPCWebRequest({
       url: state.url,
-      inputs: state.data,
-      metadata: state.metadata,
+      inputs: data,
+      metadata: metadata,
       protoInfo,
       interactive: state.interactive,
       tlsCertificate: state.tlsCertificate,
@@ -41,8 +44,8 @@ export const makeRequest = ({ dispatch, state, protoInfo }: ControlsStateProps) 
   } else {
     grpcRequest = new GRPCRequest({
       url: state.url,
-      inputs: state.data,
-      metadata: state.metadata,
+      inputs: data,
+      metadata: metadata,
       protoInfo,
       interactive: state.interactive,
       tlsCertificate: state.tlsCertificate,
